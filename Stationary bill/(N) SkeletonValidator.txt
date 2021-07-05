@@ -1,0 +1,99 @@
+package com.cts.stationarybill.skeletonvalidator;
+    2 
+    3 import java.lang.reflect.Method;
+    4 import java.util.logging.Level;
+    5 import java.util.logging.Logger;
+    6 
+    7 /**
+    8  * @author t-aarti3
+    9  *         This class is used to verify if the Code Skeleton is intact and not
+   10  *         modified by participants thereby ensuring smooth auto evaluation
+   11  * */
+   12 
+   13 public class SkeletonValidator {
+   14 	public SkeletonValidator() {
+   15 		validateClassName("com.cts.stationarybill.service.CartService");
+   16 		validateClassName("com.cts.stationarybill.vo.Item");
+   17 		validateClassName("com.cts.stationarybill.vo.MyCart");
+   18 		validateClassName("com.cts.stationarybill.bo.CartBO");
+   19 		
+   20 		validateMethodSignature(
+   21 				"calculateOrderTotalBill:double,validateCostperQuantity:boolean",
+   22 				"com.cts.stationarybill.service.CartService");
+   23 		validateMethodSignature(
+   24 				"calculateBillAfterDiscount:double,countNoteBook:int,countPen:int",
+   25 				"com.cts.stationarybill.bo.CartBO");
+   26 		
+   27 	}
+   28 	private static final Logger LOG = Logger.getLogger("SkeletonValidator");
+   29 	protected final boolean validateClassName(String className) {
+   30 
+   31 		boolean iscorrect = false;
+   32 		try {
+   33 			Class.forName(className);
+   34 			iscorrect = true;
+   35 			LOG.info("Class Name " + className + " is correct");
+   36 
+   37 		} catch (ClassNotFoundException e) {
+   38 			LOG.log(Level.SEVERE, "You have changed either the " + "class name/package. Use the correct package "
+   39 					+ "and class name as provided in the skeleton");
+   40 
+   41 		} catch (Exception e) {
+   42 			LOG.log(Level.SEVERE,
+   43 					"There is an error in validating the " + "Class Name. Please manually verify that the "
+   44 							+ "Class name is same as skeleton before uploading");
+   45 		}
+   46 		return iscorrect;
+   47 	}
+   48 	
+   49 	protected final void validateMethodSignature(String methodWithExcptn, String className) {
+   50 		Class cls = null;
+   51 		try {
+   52 
+   53 			String[] actualmethods = methodWithExcptn.split(",");
+   54 			boolean errorFlag = false;
+   55 			String[] methodSignature;
+   56 			String methodName = null;
+   57 			String returnType = null;
+   58 
+   59 			for (String singleMethod : actualmethods) {
+   60 				boolean foundMethod = false;
+   61 				methodSignature = singleMethod.split(":");
+   62 
+   63 				methodName = methodSignature[0];
+   64 				returnType = methodSignature[1];
+   65 				cls = Class.forName(className);
+   66 				Method[] methods = cls.getMethods();
+   67 				for (Method findMethod : methods) {
+   68 					if (methodName.equals(findMethod.getName())) {
+   69 						foundMethod = true;
+   70 						if (!(findMethod.getReturnType().getName().equals(returnType))) {
+   71 							errorFlag = true;
+   72 							LOG.log(Level.SEVERE, " You have changed the " + "return type in '" + methodName
+   73 									+ "' method. Please stick to the " + "skeleton provided");
+   74 
+   75 						} else {
+   76 							LOG.info("Method signature of " + methodName + " is valid");
+   77 						}
+   78 
+   79 					}
+   80 				}
+   81 				if (!foundMethod) {
+   82 					errorFlag = true;
+   83 					LOG.log(Level.SEVERE, " Unable to find the given public method " + methodName
+   84 							+ ". Do not change the " + "given public method name. " + "Verify it with the skeleton");
+   85 				}
+   86 
+   87 			}
+   88 			if (!errorFlag) {
+   89 				LOG.info("Method signature is valid");
+   90 			}
+   91 
+   92 		} catch (Exception e) {
+   93 			LOG.log(Level.SEVERE,
+   94 					" There is an error in validating the " + "method structure. Please manually verify that the "
+   95 							+ "Method signature is same as the skeleton before uploading");
+   96 		}
+   97 	}
+   98 
+   99 }

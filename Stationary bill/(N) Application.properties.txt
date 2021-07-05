@@ -1,0 +1,9 @@
+1 #Don't change property names, you can change value
+    2 
+    3 notebook.CostPerQuantity=100
+    4 pen.CostPerQuantity=50
+    5 pencil.CostPerQuantity=10
+
+    6 notebook.quantity=7
+    7 pen.quantity=10
+    8 pencil.quantity=1

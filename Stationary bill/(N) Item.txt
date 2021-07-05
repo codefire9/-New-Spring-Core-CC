@@ -1,0 +1,72 @@
+package com.cts.stationarybill.vo;
+    2 
+    3 public class Item {
+    4 	// member variables
+    5 		private String itemName;
+    6 		private double itemCostPerQuantity;
+    7 		private int quantity;
+    8 		public Item() {
+    9 			// TODO Auto-generated constructor stub
+   10 		}
+   11 		// Parameterized Constructor
+   12 		public Item(String itemName, double itemCostPerQuantity, int quantity) {
+   13 			super();		
+   14 			this.itemName = itemName;
+   15 			this.itemCostPerQuantity = itemCostPerQuantity;
+   16 			this.quantity = quantity;
+   17 		}
+   18 
+   19 		// getter and setter methods
+   20 		
+   21 		/**
+   22 		 * @return the itemName
+   23 		 */
+   24 		public String getItemName() {
+   25 			return itemName;
+   26 		}
+   27 
+   28 		/**
+   29 		 * @param itemName
+   30 		 *            the itemName to set
+   31 		 */
+   32 		public void setItemName(String itemName) {
+   33 			this.itemName = itemName;
+   34 		}
+   35 
+   36 		/**
+   37 		 * @return the itemCostPerQuantity
+   38 		 */
+   39 		public double getItemCostPerQuantity() {
+   40 			return itemCostPerQuantity;
+   41 		}
+   42 
+   43 		/**
+   44 		 * @param itemCostPerQuantity
+   45 		 *            the itemCostPerQuantity to set
+   46 		 */
+   47 		public void setItemCostPerQuantity(double itemCostPerQuantity) {
+   48 			this.itemCostPerQuantity = itemCostPerQuantity;
+   49 		}
+   50 
+   51 		/**
+   52 		 * @return the quantity
+   53 		 */
+   54 		public int getQuantity() {
+   55 			return quantity;
+   56 		}
+   57 		
+   58 		/**
+   59 		 * @param quantity
+   60 		 *            the quantity to set
+   61 		 */
+   62 		public void setQuantity(int quantity) {
+   63 			this.quantity = quantity;
+   64 		}
+   65 		@Override
+   66 		public String toString() {
+   67 			return "Item [itemName=" + itemName + ", itemCostPerQuantity=" + itemCostPerQuantity + ", quantity="
+   68 					+ quantity + "]";
+   69 		}
+   70 			
+   71 		
+   72 }

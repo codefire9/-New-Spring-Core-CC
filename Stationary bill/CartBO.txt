@@ -1,0 +1,89 @@
+   1 package com.cts.stationarybill.bo;
+    2 
+    3 import com.cts.stationarybill.vo.Item;
+    4 import com.cts.stationarybill.vo.MyCart;
+    5 import java.util.*;
+    6 
+    7 public class CartBO {
+    8 	private MyCart cart;						
+    9 
+   10 	
+   11 	public CartBO() {
+   12 		// TODO Auto-generated constructor stub
+   13 	}
+   14 	public CartBO(MyCart cart) {
+   15 		super();
+   16 		this.cart = cart;
+   17 	}
+   18 	
+   19 	public MyCart getCart() {
+   20 		return cart;
+   21 	}
+   22 	public void setCart(MyCart cart) {
+   23 		this.cart = cart;
+   24 	}
+   25 	
+   26 	
+   27 
+   28 	public double calculateBillAfterDiscount(double totalOrderBill) {
+   29 	    List<Item>items=cart.getItems();
+   30 	    double nbprice=0.0;
+   31 	    double penprice=0.0;
+   32 	    for(Item i:items){
+   33 	        if(i.getItemName().equals("Notebook")){
+   34 	            nbprice=i.getItemCostPerQuantity();
+   35 	        }
+   36 	        if(i.getItemName().equals("Pen")){
+   37 	            penprice=i.getItemCostPerQuantity();
+   38 	        }
+   39 	    }
+   40 	    int notebooks=countNoteBook();
+   41 	    int pens=countPen();
+   42 	    
+   43 	    double disc=0.0;
+   44 	    if(totalOrderBill>500){
+   45 	        if(notebooks>=3){
+   46 	            disc+=(notebooks*0.1*nbprice);
+   47 	        }
+   48 	        if(pens>=10){
+   49 	            disc+=(pens*0.2*penprice);
+   50 	            //System.out.println(disc);
+   51 	        }
+   52 	    }
+   53 
+   54 		//Code here..
+   55 		return (totalOrderBill-disc);  //TODO, change this value
+   56 	}
+   57 
+   58 	public int countNoteBook() {
+   59 	    List<Item>items=cart.getItems();
+   60 	    
+   61 		int count = 0;
+   62 		for(Item i:items){
+   63 		    if(i.getItemName().equals("Notebook")){
+   64 		        count=i.getQuantity();
+   65 		        break;
+   66 		    }
+   67 		}
+   68 
+   69 		//Code here..
+   70 
+   71 		return count;  //TODO, change this value
+   72 	} 
+   73 
+   74 	public int countPen() {
+   75 	    List<Item>items=cart.getItems();
+   76 	    
+   77 		int count = 0;
+   78 		for(Item i:items){
+   79 		    if(i.getItemName().equals("Pen")){
+   80 		        count=i.getQuantity();
+   81 		        break;
+   82 		    }
+   83 		}
+   84 
+   85 		//Code here..
+   86 
+   87 		return count;  //TODO, change this value
+   88 	}
+   89 }

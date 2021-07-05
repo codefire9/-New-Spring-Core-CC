@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    2 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    3 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    4 	<modelVersion>4.0.0</modelVersion>
+    5 
+    6 	<groupId>com.cts.stationerybill</groupId>
+    7 	<artifactId>RoughStationeryBill</artifactId>
+    8 	<version>0.0.1-SNAPSHOT</version>
+    9 	<packaging>jar</packaging>
+   10 
+   11 	<name>StationeryBill</name>
+   12 	<url>http://maven.apache.org</url>
+   13 
+   14 	<properties>
+   15 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   16 		<maven.compiler.source>1.8</maven.compiler.source>
+   17 		<maven.compiler.target>1.8</maven.compiler.target>
+   18 		<junit.jupiter.version>5.4.0</junit.jupiter.version>
+   19 	</properties>
+   20 
+   21 	<dependencies>
+   22 	
+   23   <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+   24 <dependency>
+   25     <groupId>org.springframework</groupId>
+   26     <artifactId>spring-context</artifactId>
+   27     <version>5.2.0.RELEASE</version>
+   28 </dependency>
+   29 <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+   30 		<dependency>
+   31 			<groupId>org.junit.jupiter</groupId>
+   32 			<artifactId>junit-jupiter-engine</artifactId>
+   33 			<version>${junit.jupiter.version}</version>
+   34 			<scope>test</scope>
+   35 		</dependency>
+   36 		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+   37 		<dependency>
+   38 			<groupId>org.junit.jupiter</groupId>
+   39 			<artifactId>junit-jupiter-api</artifactId>
+   40 			<version>${junit.jupiter.version}</version>
+   41 			<scope>test</scope>
+   42 		</dependency>
+   43 
+   44 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+   45 		<dependency>
+   46 			<groupId>org.junit.platform</groupId>
+   47 			<artifactId>junit-platform-launcher</artifactId>
+   48 			<version>1.5.1</version>
+   49 			<scope>test</scope>
+   50 		</dependency>
+   51 
+   52 		<dependency>
+   53 			<groupId>org.junit.platform</groupId>
+   54 			<artifactId>junit-platform-commons</artifactId>
+   55 			<version>1.5.1</version>
+   56 		</dependency>
+   57 
+   58 	</dependencies>
+   59 	<build>
+   60 <plugins>
+   61 <plugin>
+   62 <artifactId>maven-surefire-plugin</artifactId>
+   63 <version>2.22.1</version>
+   64 </plugin>
+   65 </plugins>
+   66 </build>
+   67 	<reporting>
+   68         <plugins>
+   69             <plugin>
+   70                 <groupId>org.apache.maven.plugins</groupId>
+   71                 <artifactId>maven-surefire-report-plugin</artifactId>
+   72                 <version>2.19.1</version>
+   73             </plugin>
+   74         </plugins>
+   75     </reporting>
+   76 </project>

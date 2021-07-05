@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    2 <beans xmlns="http://www.springframework.org/schema/beans"
+    3 	xmlns:context="http://www.springframework.org/schema/context"
+    4 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    5 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    6     http://www.springframework.org/schema/beans/spring-beans.xsd
+    7     http://www.springframework.org/schema/context
+    8     http://www.springframework.org/schema/context/spring-context.xsd">
+    9 
+   10 	
+   11 	
+   12 	<context:property-placeholder
+   13 		location="classpath:application.properties" />
+
+   14 	<bean id="notebook" class="com.cts.stationarybill.vo.Item">
+   15 	    <property name="itemName" value="Notebook" />
+   16 	    <property name="itemCostPerQuantity" value="${notebook.CostPerQuantity}"/>
+   17 	    <property name="quantity" value="${notebook.quantity}"/>
+   18 	</bean>
+
+   19 	<bean id="pen" class="com.cts.stationarybill.vo.Item">
+   20 	    <property name="itemName" value="Pen"/>
+   21 	    <property name="itemCostPerQuantity" value="${pen.CostPerQuantity}"/>
+   22 	    <property name="quantity" value="${pen.quantity}"/>
+   23 	</bean>
+
+   24 	<bean id="pencil" class="com.cts.stationarybill.vo.Item">
+   25 	    <property name="itemName" value="Pencil"/>
+   26 	    <property name="itemCostPerQuantity"  value="${pencil.CostPerQuantity}"/>
+   27 	    <property name="quantity" value="${pencil.quantity}"/>
+   28 	</bean>
+
+
+   29 	<bean id="myCart" class="com.cts.stationarybill.vo.MyCart">
+   30 	    <property name="items">
+   31 	        <list>
+   32 	            <ref bean="notebook"/>
+   33 	            <ref bean="pen"/>
+   34 	            <ref bean="pencil"/>
+   35 	        </list>
+   36 	    </property>
+   37 	</bean>
+
+
+   38 	<bean id="cartBo" class="com.cts.stationarybill.bo.CartBO">
+   39 	    <constructor-arg ref="myCart"/>
+   40 	</bean>
+
+   41 	<bean id="cartService" class="com.cts.stationarybill.service.CartService">
+   42 	    <property name="cartBo" ref="cartBo"/>
+   43 	</bean>
+   44 
+   45 
+   46 </beans>

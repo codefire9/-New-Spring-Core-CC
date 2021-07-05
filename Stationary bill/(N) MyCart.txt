@@ -1,0 +1,21 @@
+    1 package com.cts.stationarybill.vo;
+    2 
+    3 import java.util.List;
+    4 
+    5 public class MyCart {
+    6 private List<Item> items;
+    7 public MyCart() {
+    8 	// TODO Auto-generated constructor stub
+    9 }
+   10 public MyCart(List<Item> items) {
+   11 	super();
+   12 	this.items = items;
+   13 }
+   14 public List<Item> getItems() {
+   15 	return items;
+   16 }
+   17 public void setItems(List<Item> items) {
+   18 	this.items = items;
+   19 }
+   20 
+   21 }

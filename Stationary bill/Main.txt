@@ -1,0 +1,31 @@
+    1 package com.cts.stationarybill.main;
+    2 
+    3 import org.springframework.context.ApplicationContext;
+    4 import org.springframework.context.support.ClassPathXmlApplicationContext;
+    5 
+    6 import com.cts.stationarybill.exception.InvalidCostPerQuantityException;
+    7 import com.cts.stationarybill.service.CartService;
+    8 import com.cts.stationarybill.skeletonvalidator.SkeletonValidator;
+    9 import com.cts.stationarybill.vo.MyCart;
+   10 import com.cts.stationarybill.vo.Item;
+   11 
+   12 
+   13 public class Main 
+   14 {
+   15     public static void main( String[] args )
+   16     {
+   17     	SkeletonValidator validator = new SkeletonValidator();
+   18     	
+   19    	@SuppressWarnings("resource")
+   20     	ApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
+   21     		
+   22     	CartService service=(CartService)ctx.getBean("cartService");
+   23     	try{
+   24     	double totalBill=service.calculateOrderTotalBill();
+   25     	System.out.println("Your total bill is = "+totalBill);
+   26     	}
+   27     	catch(InvalidCostPerQuantityException e){
+   28     	    System.out.println(e.getMessage());
+   29     	}
+   30     }
+   31 }

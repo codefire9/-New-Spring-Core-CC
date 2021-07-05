@@ -1,0 +1,71 @@
+1 package com.cts.stationarybill.service;
+    2 
+    3 import java.util.List;
+    4 
+    5 import com.cts.stationarybill.bo.CartBO;
+    6 import com.cts.stationarybill.exception.InvalidCostPerQuantityException;
+    7 import com.cts.stationarybill.vo.Item;
+    8 import java.util.*;
+    9 
+   10 public class CartService {
+   11 	private CartBO cartBo;
+   12 	public CartService() {
+   13 		// TODO Auto-generated constructor stub
+   14 	}
+   15 	
+   16 	
+   17 	public CartService(CartBO cartBo) {
+   18 		super();
+   19 		this.cartBo = cartBo;
+   20 	}
+   21 
+   22 	public CartBO getCartBo() {
+   23 		return cartBo;
+   24 	}
+   25 
+   26 	public void setCartBo(CartBO cartBo) {
+   27 		this.cartBo = cartBo;
+   28 	}
+   29 	/**
+   30 	 * Method to calculate total bill
+   31 	 * 
+   32 	 * @param MyCart
+   33 	 * @return totalOrderBill
+   34 	 */
+   35 	public double calculateOrderTotalBill() throws InvalidCostPerQuantityException {
+   36 		double totalOrderBill = 0;
+   37 		List<Item>items=cartBo.getCart().getItems();
+   38 		if(validateCostPerQuantity()){
+   39 		    for(Item i:items){
+   40 		        totalOrderBill+=i.getItemCostPerQuantity()*i.getQuantity();
+   41 		    }
+   42 		        totalOrderBill=cartBo.calculateBillAfterDiscount(totalOrderBill);
+   43 		        return totalOrderBill;
+   44 		}else{
+   45 		    throw new InvalidCostPerQuantityException("Cost per quantity must be positive non zero value");
+   46 		}
+   47 
+   48 		//Code here..
+   49         //TODO, change this value
+   50 
+   51 	}
+   52 
+   53 	/**
+   54 	 * Method to validate cost per quantity and throws exception if validation failes
+   55 	 * 
+   56 	 * @exception InvalidCostPerQuantityException
+   57 	 */
+   58 	public boolean validateCostPerQuantity() throws InvalidCostPerQuantityException{
+   59 	    List<Item>items=cartBo.getCart().getItems();
+   60 	    for(Item i:items){
+   61 	        if(i.getItemCostPerQuantity()<1){
+   62 	            throw new InvalidCostPerQuantityException("Cost per quantity must be positive non zero value");
+   63 	        }
+   64 	   
+   65 	    }
+   66 	    return true;
+   67 		//Code here..
+   68 		
+   69 	}
+   70 }
+   71 
